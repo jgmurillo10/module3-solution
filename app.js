@@ -34,6 +34,7 @@
 	 };
 	MenuSearchService.$inject= ['$http', 'BaseApi'];
 	function MenuSearchService ($http, BaseApi) {
+		console.log('')
 	 	var service=this;
 	 	service.getMatchedMenuItems= function () {
 	 		var response = $http({
