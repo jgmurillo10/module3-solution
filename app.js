@@ -20,6 +20,8 @@
 			narrow.searchTerm='';
 			narrow.items=[];
 			narrow.rhi="";
+			narrow.rhie="";
+			
 			var promise = MenuSearchService.getMatchedMenuItems();
 			
 
