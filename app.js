@@ -18,33 +18,32 @@
 	
 			var narrow=this;
 			narrow.searchTerm='';
-			narrow.items=[];
-			narrow.rhi="";
-			narrow.rhie="";
+			console.log('hola')
+			narrow.found=[];
 			
-			var promise = MenuSearchService.getMatchedMenuItems();
+			found = MenuSearchService.getMatchedMenuItems();
 			
-
-			promise
-			.then(function (response) {
-				console.log(response.data)
-				narrow.items=response.data;
-			})
-			.catch(function (err) {
-				console.log(err);
-			})
+			console.log(found[0])
+		
 	 };
 	MenuSearchService.$inject= ['$http', 'BaseApi'];
 	function MenuSearchService ($http, BaseApi) {
-		console.log('')
-	 	var service=this;
-	 	service.getMatchedMenuItems= function () {
-	 		var response = $http({
-	 			method: 'GET',
-	 			url: (BaseApi+ '/menu_items.json') 
-	 		});
-	 		return response;	
-	 	}
+		var service=this;
+		service.getMatchedMenuItems= function () {
+
+				return $http({
+				method: 'GET',
+				url: (BaseApi + '/menu_items.json')
+			})
+			.then(function (result) {
+			    // process result and only keep items that match
+			    var foundItems= result.data;
+			    console.log(foundItems)
+			    // return processed items
+			    return foundItems;
+			});
+		}
+		
 	 }; 
 
 })();
